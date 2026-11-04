@@ -1,6 +1,5 @@
-const searchBooks = (query: string) => {
-  const books = document.querySelectorAll('.book-item');
-  books.forEach((book) => {
+const searchBooks = (query: string) =>
+  document.querySelectorAll('.book-item')?.forEach((book) => {
     const bookData = book.getAttribute('book-data');
     if (bookData && bookData.toLowerCase().includes(query.toLowerCase())) {
       book.classList.remove('hidden');
@@ -8,7 +7,6 @@ const searchBooks = (query: string) => {
       book.classList.add('hidden');
     }
   });
-};
 
 export const SearchInput = () => {
   const searchContainer = document.createElement('div');
@@ -18,9 +16,9 @@ export const SearchInput = () => {
   input.setAttribute('type', 'text');
   input.setAttribute('placeholder', 'Search books...');
   searchContainer.appendChild(input);
-  input.addEventListener('input', (e) => {
-    searchBooks((e.target as HTMLInputElement).value);
-  });
+  input.addEventListener('input', (e) =>
+    searchBooks((e.target as HTMLInputElement).value),
+  );
 
   return searchContainer;
 };
