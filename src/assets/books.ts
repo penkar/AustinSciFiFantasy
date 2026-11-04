@@ -1226,4 +1226,10 @@ export const booksList: BooksListType = [
     title: 'The Traitor Baru Cormorant',
     author: 'Seth Dickinson',
   },
+  {
+    date: '12/5/2026',
+    number: '204',
+    title: 'The Callahan Chronicles',
+    author: 'Spider Robinson',
+  },
 ];
