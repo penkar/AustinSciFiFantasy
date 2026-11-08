@@ -1232,4 +1232,10 @@ export const booksList: BooksListType = [
     title: 'The Callahan Chronicles',
     author: 'Spider Robinson',
   },
+  {
+    date: '1/2/2027',
+    number: '205',
+    title: 'The Ten Thousand Doors of January',
+    author: 'Alix E. Harrow',
+  },
 ];
