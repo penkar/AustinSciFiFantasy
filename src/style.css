@@ -115,6 +115,28 @@ header h1 {
   background: var(--paper);
 }
 
+.sort-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.sort-buttons button {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink);
+  background: var(--paper);
+  font: inherit;
+  cursor: pointer;
+}
+
+.sort-buttons button:hover {
+  border-color: var(--coral);
+}
+
 .book-item {
   display: grid;
   grid-template-columns: 3.5rem minmax(0, 1.4fr) minmax(10rem, 1fr) 7rem;

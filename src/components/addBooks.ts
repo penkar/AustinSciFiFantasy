@@ -1,8 +1,51 @@
 import { booksList } from '../assets/books';
 
+type SortKeyType = 'author' | 'number' | 'title';
+const sortKeys: SortKeyType[] = ['number', 'title', 'author'];
+
+const sortBooks = (
+  container: HTMLElement,
+  key: SortKeyType,
+  ascending: boolean,
+) => {
+  const items = Array.from(
+    container.querySelectorAll<HTMLElement>('.book-item'),
+  );
+  const valueOf = (el: HTMLElement) =>
+    el.querySelector(`.book-${key}`)?.textContent ?? '';
+  items.sort((a, b) => {
+    const result =
+      key === 'number'
+        ? Number(valueOf(a)) - Number(valueOf(b))
+        : valueOf(a).localeCompare(valueOf(b));
+    return ascending ? result : -result;
+  });
+  items.forEach((item) => container.appendChild(item));
+};
+
 export const AddBooks = () => {
   const booksContainer = document.createElement('div');
   booksContainer.classList.add('books-container');
+
+  const sortBar = document.createElement('div');
+  sortBar.classList.add('sort-buttons');
+  let activeKey: SortKeyType | null = null;
+  let ascending = true;
+  sortKeys.forEach((key) => {
+    const button = document.createElement('button');
+    button.textContent = `Sort by ${key}`;
+    button.addEventListener('click', () => {
+      ascending = activeKey === key ? !ascending : true;
+      activeKey = key;
+      sortBar.querySelectorAll('button').forEach((b, i) => {
+        b.textContent = `Sort by ${sortKeys[i]}`;
+      });
+      button.textContent += ascending ? ' ▲' : ' ▼';
+      sortBooks(booksContainer, key, ascending);
+    });
+    sortBar.appendChild(button);
+  });
+  booksContainer.appendChild(sortBar);
 
   booksList.forEach(({ title, author, date, number }) => {
     const bookElement = document.createElement('div');
