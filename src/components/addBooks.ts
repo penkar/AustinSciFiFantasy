@@ -1,7 +1,7 @@
 import { booksList } from '../assets/books';
 
-type SortKeyType = 'author' | 'number' | 'title';
-const sortKeys: SortKeyType[] = ['number', 'title', 'author'];
+type SortKeyType = 'author' | 'date' | 'title';
+const sortKeys: SortKeyType[] = ['date', 'title', 'author'];
 
 const sortBooks = (
   container: HTMLElement,
@@ -15,7 +15,7 @@ const sortBooks = (
     el.querySelector(`.book-${key}`)?.textContent ?? '';
   items.sort((a, b) => {
     const result =
-      key === 'number'
+      key === 'date'
         ? Number(valueOf(a)) - Number(valueOf(b))
         : valueOf(a).localeCompare(valueOf(b));
     return ascending ? result : -result;
@@ -56,7 +56,7 @@ export const AddBooks = () => {
     );
 
     const numberEle = document.createElement('div');
-    numberEle.classList.add('book-number');
+    numberEle.classList.add('book-date');
     numberEle.textContent = `${number}`;
     bookElement.appendChild(numberEle);
 
@@ -71,7 +71,7 @@ export const AddBooks = () => {
     bookElement.appendChild(authorEle);
 
     const dateEle = document.createElement('div');
-    dateEle.classList.add('book-date');
+    dateEle.classList.add('book-meetup-date');
     dateEle.textContent = `${date}`;
     bookElement.appendChild(dateEle);
     booksContainer.appendChild(bookElement);
