@@ -47,34 +47,37 @@ export const AddBooks = () => {
   });
   booksContainer.appendChild(sortBar);
 
-  booksList.forEach(({ title, author, date, number }) => {
-    const bookElement = document.createElement('div');
-    bookElement.classList.add('book-item');
-    bookElement.setAttribute(
-      'book-data',
-      `${author} - ${title} - ${date} - ${number}`,
-    );
+  booksList.forEach(
+    ({ title, firstName, lastName, middleName, date, number }) => {
+      const bookElement = document.createElement('div');
+      bookElement.classList.add('book-item');
+      bookElement.setAttribute(
+        'book-data',
+        `${firstName} ${middleName ? middleName + ' ' : ''}${lastName} - ${title} - ${date} - ${number}`,
+      );
 
-    const numberEle = document.createElement('div');
-    numberEle.classList.add('book-date');
-    numberEle.textContent = `${number}`;
-    bookElement.appendChild(numberEle);
+      const numberEle = document.createElement('div');
+      numberEle.classList.add('book-date');
+      numberEle.textContent = `${number}`;
+      bookElement.appendChild(numberEle);
 
-    const titleEle = document.createElement('div');
-    titleEle.classList.add('book-title');
-    titleEle.textContent = `${title}`;
-    bookElement.appendChild(titleEle);
+      const titleEle = document.createElement('div');
+      titleEle.classList.add('book-title');
+      titleEle.textContent = `${title}`;
+      bookElement.appendChild(titleEle);
 
-    const authorEle = document.createElement('div');
-    authorEle.classList.add('book-author');
-    authorEle.textContent = `${author}`;
-    bookElement.appendChild(authorEle);
+      const authorEle = document.createElement('div');
+      authorEle.classList.add('book-author');
 
-    const dateEle = document.createElement('div');
-    dateEle.classList.add('book-meetup-date');
-    dateEle.textContent = `${date}`;
-    bookElement.appendChild(dateEle);
-    booksContainer.appendChild(bookElement);
-  });
+      authorEle.textContent = `${lastName}, ${firstName} ${middleName ? middleName + ' ' : ''}`;
+      bookElement.appendChild(authorEle);
+
+      const dateEle = document.createElement('div');
+      dateEle.classList.add('book-meetup-date');
+      dateEle.textContent = `${date}`;
+      bookElement.appendChild(dateEle);
+      booksContainer.appendChild(bookElement);
+    },
+  );
   return booksContainer;
 };
